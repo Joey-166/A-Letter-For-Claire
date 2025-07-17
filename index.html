@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>給朋友的音樂信</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    #typed-text {
+      white-space: pre-wrap; /* 保留換行 */
+      border-right: 2px solid black; /* 打字機游標 */
+      font-size: 1.2rem;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 30px;
+      padding-right: 5px;
+      animation: blink-caret 0.75s step-end infinite;
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: black }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>給朋友的一封信</h1>
+  
+  <div id="typed-text"></div>
+
+  <audio controls autoplay loop>
+    <source src="music.mp3" type="audio/mpeg" />
+    你的瀏覽器不支援音樂播放。
+  </audio>
+
+  <script>
+    const text = `親愛的朋友，
+
+你好！希望你一切安好。
+這封信是我用打字機動畫寫給你的，
+搭配音樂，想讓你感受到我的心意。
+
+期待你的回信！
+
+— Joey`;
+
+    const typedTextElem = document.getElementById('typed-text');
+    let index = 0;
+
+    function type() {
+      if (index < text.length) {
+        typedTextElem.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, 80); // 每80毫秒打下一個字，速度可調
+      }
+    }
+
+    window.onload = type;
+  </script>
+</body>
+</html>
